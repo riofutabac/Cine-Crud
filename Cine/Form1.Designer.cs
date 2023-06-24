@@ -50,7 +50,7 @@
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(0, 0);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(383, 456);
+            this.pictureBox3.Size = new System.Drawing.Size(364, 482);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 5;
             this.pictureBox3.TabStop = false;
@@ -59,7 +59,7 @@
             // 
             this.loginButton.BackColor = System.Drawing.Color.White;
             this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginButton.Location = new System.Drawing.Point(102, 292);
+            this.loginButton.Location = new System.Drawing.Point(91, 299);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(182, 49);
             this.loginButton.TabIndex = 7;
@@ -71,7 +71,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(42, 242);
+            this.pictureBox2.Location = new System.Drawing.Point(31, 249);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(34, 34);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -82,7 +82,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Black;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(40, 189);
+            this.pictureBox1.Location = new System.Drawing.Point(29, 196);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(34, 34);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -91,7 +91,7 @@
             // 
             // passwordTextBox
             // 
-            this.passwordTextBox.Location = new System.Drawing.Point(75, 246);
+            this.passwordTextBox.Location = new System.Drawing.Point(64, 253);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(235, 25);
@@ -101,7 +101,7 @@
             // 
             // userTextBox
             // 
-            this.userTextBox.Location = new System.Drawing.Point(75, 194);
+            this.userTextBox.Location = new System.Drawing.Point(64, 201);
             this.userTextBox.Name = "userTextBox";
             this.userTextBox.Size = new System.Drawing.Size(235, 25);
             this.userTextBox.TabIndex = 15;
@@ -113,7 +113,7 @@
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.Black;
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(140, 78);
+            this.pictureBox4.Location = new System.Drawing.Point(129, 85);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(100, 100);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -125,7 +125,7 @@
             this.recuperaContrasenia.AutoSize = true;
             this.recuperaContrasenia.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.recuperaContrasenia.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.recuperaContrasenia.Location = new System.Drawing.Point(125, 344);
+            this.recuperaContrasenia.Location = new System.Drawing.Point(114, 351);
             this.recuperaContrasenia.Name = "recuperaContrasenia";
             this.recuperaContrasenia.Size = new System.Drawing.Size(143, 17);
             this.recuperaContrasenia.TabIndex = 18;
@@ -137,7 +137,7 @@
             this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(341, 0);
+            this.button1.Location = new System.Drawing.Point(322, 0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(42, 37);
             this.button1.TabIndex = 19;
@@ -148,7 +148,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(383, 456);
+            this.ClientSize = new System.Drawing.Size(364, 482);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.recuperaContrasenia);
             this.Controls.Add(this.pictureBox4);
