@@ -36,7 +36,6 @@
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.userTextBox = new System.Windows.Forms.TextBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.recuperaContrasenia = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -120,17 +119,6 @@
             this.pictureBox4.TabIndex = 16;
             this.pictureBox4.TabStop = false;
             // 
-            // recuperaContrasenia
-            // 
-            this.recuperaContrasenia.AutoSize = true;
-            this.recuperaContrasenia.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.recuperaContrasenia.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.recuperaContrasenia.Location = new System.Drawing.Point(114, 351);
-            this.recuperaContrasenia.Name = "recuperaContrasenia";
-            this.recuperaContrasenia.Size = new System.Drawing.Size(143, 17);
-            this.recuperaContrasenia.TabIndex = 18;
-            this.recuperaContrasenia.Text = "¿Olvidó su contraseña?";
-            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -150,7 +138,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(364, 482);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.recuperaContrasenia);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -179,7 +166,6 @@
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.TextBox userTextBox;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label recuperaContrasenia;
         private System.Windows.Forms.Button button1;
     }
 }

@@ -67,6 +67,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransparentPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,8 +96,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="ICONO\" />
+    <Content Include="ICONO\close_25px.png" />
+    <Content Include="ICONO\customer_100px.png" />
+    <Content Include="ICONO\loginFondo.gif" />
+    <Content Include="ICONO\login_100px.png" />
+    <Content Include="ICONO\password_25px.png" />
+    <Content Include="ICONO\User Menu Female_25px.png" />
+    <Content Include="ICONO\videoplayback-_2_.gif" />
+    <Content Include="ICONO\videoplayback.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
