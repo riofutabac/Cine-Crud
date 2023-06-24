@@ -36,7 +36,6 @@
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.userTextBox = new System.Windows.Forms.TextBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.recordarmeCheckBox = new System.Windows.Forms.CheckBox();
             this.recuperaContrasenia = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -60,7 +59,7 @@
             // 
             this.loginButton.BackColor = System.Drawing.Color.White;
             this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginButton.Location = new System.Drawing.Point(104, 326);
+            this.loginButton.Location = new System.Drawing.Point(102, 292);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(182, 49);
             this.loginButton.TabIndex = 7;
@@ -72,7 +71,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(42, 259);
+            this.pictureBox2.Location = new System.Drawing.Point(42, 242);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(34, 34);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -92,7 +91,7 @@
             // 
             // passwordTextBox
             // 
-            this.passwordTextBox.Location = new System.Drawing.Point(75, 263);
+            this.passwordTextBox.Location = new System.Drawing.Point(75, 246);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(235, 25);
@@ -121,24 +120,12 @@
             this.pictureBox4.TabIndex = 16;
             this.pictureBox4.TabStop = false;
             // 
-            // recordarmeCheckBox
-            // 
-            this.recordarmeCheckBox.AutoSize = true;
-            this.recordarmeCheckBox.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.recordarmeCheckBox.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.recordarmeCheckBox.Location = new System.Drawing.Point(75, 299);
-            this.recordarmeCheckBox.Name = "recordarmeCheckBox";
-            this.recordarmeCheckBox.Size = new System.Drawing.Size(102, 21);
-            this.recordarmeCheckBox.TabIndex = 17;
-            this.recordarmeCheckBox.Text = "Recordarme";
-            this.recordarmeCheckBox.UseVisualStyleBackColor = false;
-            // 
             // recuperaContrasenia
             // 
             this.recuperaContrasenia.AutoSize = true;
             this.recuperaContrasenia.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.recuperaContrasenia.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.recuperaContrasenia.Location = new System.Drawing.Point(127, 378);
+            this.recuperaContrasenia.Location = new System.Drawing.Point(125, 344);
             this.recuperaContrasenia.Name = "recuperaContrasenia";
             this.recuperaContrasenia.Size = new System.Drawing.Size(143, 17);
             this.recuperaContrasenia.TabIndex = 18;
@@ -164,7 +151,6 @@
             this.ClientSize = new System.Drawing.Size(383, 456);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.recuperaContrasenia);
-            this.Controls.Add(this.recordarmeCheckBox);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -193,7 +179,6 @@
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.TextBox userTextBox;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.CheckBox recordarmeCheckBox;
         private System.Windows.Forms.Label recuperaContrasenia;
         private System.Windows.Forms.Button button1;
     }
