@@ -9,14 +9,24 @@ namespace Cine
     internal static class Program
     {
         /// <summary>
-        /// Punto de entrada principal para la aplicación.
+        /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            RunLoginForm();
+        }
+
+        private static void RunLoginForm()
+        {
+            using (var loginForm = new LoginForm())
+            {
+                Application.Run(loginForm);
+            }
         }
     }
 }
