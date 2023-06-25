@@ -264,6 +264,7 @@
             btnLimpar.TabIndex = 12;
             btnLimpar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             btnLimpar.UseVisualStyleBackColor = false;
+            btnLimpar.Click += btnLimpar_Click;
             // 
             // btnBuscar
             // 
@@ -278,11 +279,12 @@
             btnBuscar.TabIndex = 3;
             btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             btnBuscar.UseVisualStyleBackColor = false;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // busquedaTextBox
             // 
             busquedaTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            busquedaTextBox.Location = new System.Drawing.Point(147, 32);
+            busquedaTextBox.Location = new System.Drawing.Point(147, 36);
             busquedaTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             busquedaTextBox.MaxLength = 12;
             busquedaTextBox.Name = "busquedaTextBox";

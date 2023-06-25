@@ -92,7 +92,7 @@ namespace Cine
             }
         }
 
-   
+
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -141,7 +141,7 @@ namespace Cine
                     else
                     {
                         MessageBox.Show("Error al modificar la película.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-           
+
                     }
                 }
             }
@@ -235,5 +235,53 @@ namespace Cine
             directorTextBox.Text = string.Empty;
         }
 
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(busquedaTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Ingrese un nombre para realizar la búsqueda.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                string nombre = busquedaTextBox.Text.Trim();
+                List<Pelicula> peliculas = peliculaManager.GetAll();
+
+                // Realizar la búsqueda de la película por nombre
+                Pelicula peliculaEncontrada = peliculas.FirstOrDefault(p => p.Nombre.Equals(nombre, StringComparison.OrdinalIgnoreCase));
+
+                if (peliculaEncontrada != null)
+                {
+                    // Mostrar la información de la película encontrada en los TextBox correspondientes
+                    nombreTextBox.Text = peliculaEncontrada.Nombre;
+                    actoresTextBox.Text = peliculaEncontrada.Actores;
+                    descripcionTextBox.Text = peliculaEncontrada.Descripcion;
+                    duracionTextBox.Text = peliculaEncontrada.Duracion.ToString();
+                    generoTextBox.Text = peliculaEncontrada.Genero;
+                    edadTextBox.Text = peliculaEncontrada.Edad.ToString();
+                    directorTextBox.Text = peliculaEncontrada.Director;
+
+                    MessageBox.Show("Película encontrada.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró ninguna película con ese nombre.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la búsqueda: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                busquedaTextBox.Focus();
+            }
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            busquedaTextBox.Text = string.Empty;
+        }
     }
 }
