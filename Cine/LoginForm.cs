@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SQLite;
-using System.Security.Cryptography;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Cine
@@ -16,74 +14,54 @@ namespace Cine
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Application.Exit(); // Close the application
+            Application.Exit(); // Cerrar la aplicación
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(userTextBox.Text) || string.IsNullOrWhiteSpace(passwordTextBox.Text))
+            string usuario = userTextBox.Text.Trim();
+            string clave = passwordTextBox.Text.Trim();
+
+            if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(clave))
             {
-                MessageBox.Show("Campos vacíos", "Error");
+                MessageBox.Show("Campos vacios", "Error");
                 return;
             }
 
-            string username = userTextBox.Text;
-            string password = passwordTextBox.Text;
-
-            string hashedPassword = GetHashedPassword(password);
-
-            bool isAuthenticated = VerifyLoginCredentials(username, hashedPassword);
-
-            if (isAuthenticated)
-            {
-
-                MessageBox.Show("Login successful", "Success");
-            }
-            else
-            {
-                MessageBox.Show("Invalid username or password", "Error");
-            }
-        }
-
-        private bool VerifyLoginCredentials(string username, string hashedPassword)
-        {
             string query = "SELECT * FROM usuarios WHERE usuario = @usuario AND clave = @clave";
-            using (SQLiteConnection conn = new SQLiteConnection(@"Data Source = usuariosClaves.db;"))
+            string connectionString = @"Data Source = usuariosClaves.db; Version=3;";
+
+            using (SQLiteConnection conn = new SQLiteConnection(connectionString))
             {
-                try
+                conn.Open();
+
+                using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
                 {
-                    conn.Open();
-                    using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
+                    cmd.Parameters.AddWithValue("@usuario", usuario);
+                    cmd.Parameters.AddWithValue("@clave", clave);
+
+                    using (SQLiteDataAdapter da = new SQLiteDataAdapter(cmd))
                     {
-                        cmd.Parameters.AddWithValue("@usuario", username);
-                        cmd.Parameters.AddWithValue("@clave", hashedPassword);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
 
-                        int count = Convert.ToInt32(cmd.ExecuteScalar());
-
-                        return count > 0;
+                        if (dt.Rows.Count > 0)
+                        {
+                            ClearFields();
+                      
+                            MenuCine form2 = new MenuCine();
+                            form2.ShowDialog();
+              
+                           this.Hide();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Credenciales inválidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            ClearFields();
+                            userTextBox.Focus();
+                        }
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message, "Error");
-                    return false;
-                }
-            }
-        }
-
-        private string GetHashedPassword(string password)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                StringBuilder builder = new StringBuilder();
-
-                for (int i = 0; i < hashBytes.Length; i++)
-                {
-                    builder.Append(hashBytes[i].ToString("x2")); // Convert each byte to a hexadecimal string
-                }
-
-                return builder.ToString();
             }
         }
 

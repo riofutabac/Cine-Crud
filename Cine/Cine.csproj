@@ -18,12 +18,8 @@
     <Content Include="ICONO\videoplayback.gif" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.8" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="usuariosClaves.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 </Project>
