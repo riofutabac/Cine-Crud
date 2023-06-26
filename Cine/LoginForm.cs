@@ -48,9 +48,9 @@ namespace Cine
                         if (dt.Rows.Count > 0)
                         {
                             ClearFields();
-                      
-                            MenuCine form2 = new MenuCine();
-                            form2.ShowDialog();
+                            CrudCine form2 = new CrudCine();
+                     
+                           form2.ShowDialog();
               
                            this.Hide();
                         }
