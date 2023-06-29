@@ -37,7 +37,7 @@ namespace Cine
 
         private void loadData()
         {
-            PeliculaManager peliculaManager = new PeliculaManager();
+            PeliculaManager peliculaManager = new PeliculaManager();// 
             var peliculas = peliculaManager.GetAll();
             dataGridView1.Rows.Clear();
             foreach (var pelicula in peliculas)
@@ -263,7 +263,22 @@ namespace Cine
                     directorTextBox.Text = peliculaEncontrada.Director;
 
                     MessageBox.Show("Película encontrada.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Seleccionar automáticamente la fila correspondiente en el DataGridView
+                    dataGridView1.ClearSelection();
+                    int rowIndex = dataGridView1.Rows
+                        .Cast<DataGridViewRow>()
+                        .FirstOrDefault(row => row.Cells[0].Value.ToString().Equals(nombre, StringComparison.OrdinalIgnoreCase))?
+                        .Index ?? -1;
+
+                    if (rowIndex >= 0)
+                    {
+                        dataGridView1.Rows[rowIndex].Selected = true;
+                        dataGridView1.FirstDisplayedScrollingRowIndex = rowIndex;
+                    }
                 }
+
+
                 else
                 {
                     MessageBox.Show("No se encontró ninguna película con ese nombre.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -282,6 +297,14 @@ namespace Cine
         private void btnLimpar_Click(object sender, EventArgs e)
         {
             busquedaTextBox.Text = string.Empty;
+        }
+
+        private void busquedaTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnBuscar_Click(sender, e);
+            }
         }
     }
 }

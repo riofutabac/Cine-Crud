@@ -290,6 +290,7 @@
             busquedaTextBox.Name = "busquedaTextBox";
             busquedaTextBox.Size = new System.Drawing.Size(435, 24);
             busquedaTextBox.TabIndex = 0;
+            busquedaTextBox.KeyDown += busquedaTextBox_KeyDown;
             // 
             // label9
             // 
