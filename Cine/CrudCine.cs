@@ -306,5 +306,10 @@ namespace Cine
                 btnBuscar_Click(sender, e);
             }
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
