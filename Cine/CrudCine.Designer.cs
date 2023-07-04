@@ -453,6 +453,7 @@
             Controls.Add(groupBox2);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
+            MaximizeBox = false;
             Name = "CrudCine";
             Text = "CrudCine";
             Load += CrudCine_Load;

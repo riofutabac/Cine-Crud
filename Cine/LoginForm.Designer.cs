@@ -48,9 +48,10 @@
             button1.BackgroundImage = (System.Drawing.Image)resources.GetObject("button1.BackgroundImage");
             button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            button1.Location = new System.Drawing.Point(329, 0);
+            button1.Location = new System.Drawing.Point(376, 0);
+            button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(37, 35);
+            button1.Size = new System.Drawing.Size(42, 47);
             button1.TabIndex = 27;
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
@@ -60,8 +61,9 @@
             pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             pictureBox3.Image = (System.Drawing.Image)resources.GetObject("pictureBox3.Image");
             pictureBox3.Location = new System.Drawing.Point(0, 0);
+            pictureBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new System.Drawing.Size(366, 422);
+            pictureBox3.Size = new System.Drawing.Size(418, 563);
             pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 20;
             pictureBox3.TabStop = false;
@@ -70,9 +72,10 @@
             // 
             loginButton.BackColor = System.Drawing.Color.White;
             loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            loginButton.Location = new System.Drawing.Point(101, 278);
+            loginButton.Location = new System.Drawing.Point(115, 371);
+            loginButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             loginButton.Name = "loginButton";
-            loginButton.Size = new System.Drawing.Size(159, 46);
+            loginButton.Size = new System.Drawing.Size(182, 61);
             loginButton.TabIndex = 21;
             loginButton.Text = "Login";
             loginButton.UseVisualStyleBackColor = false;
@@ -80,19 +83,21 @@
             // 
             // passwordTextBox
             // 
-            passwordTextBox.Location = new System.Drawing.Point(77, 235);
+            passwordTextBox.Location = new System.Drawing.Point(88, 313);
+            passwordTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             passwordTextBox.Name = "passwordTextBox";
             passwordTextBox.PasswordChar = '*';
-            passwordTextBox.Size = new System.Drawing.Size(206, 23);
+            passwordTextBox.Size = new System.Drawing.Size(235, 27);
             passwordTextBox.TabIndex = 24;
             passwordTextBox.Text = "Contraseña";
             passwordTextBox.KeyUp += passwordTextBox_KeyDown;
             // 
             // userTextBox
             // 
-            userTextBox.Location = new System.Drawing.Point(77, 186);
+            userTextBox.Location = new System.Drawing.Point(88, 248);
+            userTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             userTextBox.Name = "userTextBox";
-            userTextBox.Size = new System.Drawing.Size(206, 23);
+            userTextBox.Size = new System.Drawing.Size(235, 27);
             userTextBox.TabIndex = 25;
             userTextBox.Text = "usuario";
             userTextBox.Click += userTextBox_Click;
@@ -102,9 +107,10 @@
             // 
             pictureBox1.BackColor = System.Drawing.Color.Black;
             pictureBox1.Image = (System.Drawing.Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new System.Drawing.Point(46, 182);
+            pictureBox1.Location = new System.Drawing.Point(53, 243);
+            pictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new System.Drawing.Size(30, 32);
+            pictureBox1.Size = new System.Drawing.Size(34, 43);
             pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             pictureBox1.TabIndex = 23;
             pictureBox1.TabStop = false;
@@ -113,9 +119,10 @@
             // 
             pictureBox2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             pictureBox2.Image = (System.Drawing.Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new System.Drawing.Point(48, 231);
+            pictureBox2.Location = new System.Drawing.Point(55, 308);
+            pictureBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new System.Drawing.Size(30, 32);
+            pictureBox2.Size = new System.Drawing.Size(34, 43);
             pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             pictureBox2.TabIndex = 22;
             pictureBox2.TabStop = false;
@@ -126,17 +133,17 @@
             label1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             label1.Font = new System.Drawing.Font("Segoe Script", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             label1.ForeColor = System.Drawing.SystemColors.Control;
-            label1.Location = new System.Drawing.Point(92, 93);
+            label1.Location = new System.Drawing.Point(105, 124);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(172, 76);
+            label1.Size = new System.Drawing.Size(217, 95);
             label1.TabIndex = 28;
             label1.Text = "Login";
             // 
             // LoginForm
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(366, 422);
+            ClientSize = new System.Drawing.Size(418, 563);
             Controls.Add(label1);
             Controls.Add(button1);
             Controls.Add(pictureBox2);
@@ -146,6 +153,7 @@
             Controls.Add(loginButton);
             Controls.Add(pictureBox3);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             Name = "LoginForm";
             Text = "LoginForm";
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
