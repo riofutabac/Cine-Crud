@@ -25,6 +25,19 @@ namespace Cine
         {
             return _peliculaGateway.Delete(id);
         }
+        public bool Exists(Pelicula pelicula)
+        {
+            List<Pelicula> peliculas = GetAll();
 
+            foreach (Pelicula p in peliculas)
+            {
+                if (p.Nombre.ToLower() == pelicula.Nombre.ToLower())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

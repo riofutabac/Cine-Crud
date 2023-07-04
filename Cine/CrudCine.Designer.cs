@@ -36,6 +36,7 @@
             label3 = new System.Windows.Forms.Label();
             labelNombre = new System.Windows.Forms.Label();
             groupBox1 = new System.Windows.Forms.GroupBox();
+            btnAgregar = new System.Windows.Forms.Button();
             editarButton = new System.Windows.Forms.Button();
             deleteButton = new System.Windows.Forms.Button();
             agregarButton = new System.Windows.Forms.Button();
@@ -60,6 +61,8 @@
             Edad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Director = new System.Windows.Forms.DataGridViewTextBoxColumn();
             groupBox2 = new System.Windows.Forms.GroupBox();
+            btnOrdenar = new System.Windows.Forms.Button();
+            cmbOrdenar = new System.Windows.Forms.ComboBox();
             menuStrip1 = new System.Windows.Forms.MenuStrip();
             exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             groupBox1.SuspendLayout();
@@ -137,6 +140,7 @@
             // groupBox1
             // 
             groupBox1.BackColor = System.Drawing.Color.Silver;
+            groupBox1.Controls.Add(btnAgregar);
             groupBox1.Controls.Add(editarButton);
             groupBox1.Controls.Add(deleteButton);
             groupBox1.Controls.Add(agregarButton);
@@ -164,6 +168,16 @@
             groupBox1.TabStop = false;
             groupBox1.Enter += groupBox1_Enter;
             // 
+            // btnAgregar
+            // 
+            btnAgregar.Location = new System.Drawing.Point(36, 466);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.Size = new System.Drawing.Size(94, 29);
+            btnAgregar.TabIndex = 15;
+            btnAgregar.Text = "Agregar";
+            btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
+            // 
             // editarButton
             // 
             editarButton.Location = new System.Drawing.Point(106, 510);
@@ -186,13 +200,10 @@
             // 
             // agregarButton
             // 
-            agregarButton.Location = new System.Drawing.Point(36, 466);
+            agregarButton.Location = new System.Drawing.Point(0, 0);
             agregarButton.Name = "agregarButton";
-            agregarButton.Size = new System.Drawing.Size(94, 29);
-            agregarButton.TabIndex = 6;
-            agregarButton.Text = "Agregar";
-            agregarButton.UseVisualStyleBackColor = true;
-            agregarButton.Click += agregarButton_Click;
+            agregarButton.Size = new System.Drawing.Size(75, 23);
+            agregarButton.TabIndex = 9;
             // 
             // directorTextBox
             // 
@@ -382,6 +393,8 @@
             // groupBox2
             // 
             groupBox2.BackColor = System.Drawing.Color.FromArgb(204, 204, 204);
+            groupBox2.Controls.Add(btnOrdenar);
+            groupBox2.Controls.Add(cmbOrdenar);
             groupBox2.Controls.Add(btnLimpar);
             groupBox2.Controls.Add(btnBuscar);
             groupBox2.Controls.Add(busquedaTextBox);
@@ -394,6 +407,25 @@
             groupBox2.Size = new System.Drawing.Size(832, 561);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
+            // 
+            // btnOrdenar
+            // 
+            btnOrdenar.Location = new System.Drawing.Point(277, 96);
+            btnOrdenar.Name = "btnOrdenar";
+            btnOrdenar.Size = new System.Drawing.Size(94, 29);
+            btnOrdenar.TabIndex = 14;
+            btnOrdenar.Text = "Ordenar";
+            btnOrdenar.UseVisualStyleBackColor = true;
+            btnOrdenar.Click += btnOrdenar_Click;
+            // 
+            // cmbOrdenar
+            // 
+            cmbOrdenar.FormattingEnabled = true;
+            cmbOrdenar.Items.AddRange(new object[] { "Nombre", "Actores", "Descripción", "Duración", "Género", "Edad" });
+            cmbOrdenar.Location = new System.Drawing.Point(66, 96);
+            cmbOrdenar.Name = "cmbOrdenar";
+            cmbOrdenar.Size = new System.Drawing.Size(151, 28);
+            cmbOrdenar.TabIndex = 13;
             // 
             // menuStrip1
             // 
@@ -478,5 +510,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Duracion;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.Button btnOrdenar;
+        private System.Windows.Forms.ComboBox cmbOrdenar;
+        private System.Windows.Forms.Button btnAgregar;
     }
 }

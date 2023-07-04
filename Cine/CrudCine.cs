@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SQLite;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Cine
 {
@@ -46,51 +40,66 @@ namespace Cine
             }
         }
 
-        private void agregarButton_Click(object sender, EventArgs e)
+        private void btnAgregar_Click(object sender, EventArgs e)
         {
-
+            List<Pelicula> peliculas = peliculaManager.GetAll();
             try
             {
-                // Verificar si los campos están vacíos
-                if (string.IsNullOrWhiteSpace(nombreTextBox.Text) ||
-                string.IsNullOrWhiteSpace(actoresTextBox.Text) ||
-                string.IsNullOrWhiteSpace(descripcionTextBox.Text) ||
-                string.IsNullOrWhiteSpace(duracionTextBox.Text) ||
-                string.IsNullOrWhiteSpace(generoTextBox.Text) ||
-                string.IsNullOrWhiteSpace(edadTextBox.Text) ||
-                string.IsNullOrWhiteSpace(directorTextBox.Text))
+                // Obtener los datos de la película desde los TextBox
+                string nombre = nombreTextBox.Text.Trim();
+                string actores = actoresTextBox.Text.Trim();
+                string descripcion = descripcionTextBox.Text.Trim();
+                int duracion = int.Parse(duracionTextBox.Text.Trim());
+                string genero = generoTextBox.Text.Trim();
+                int edad = int.Parse(edadTextBox.Text.Trim());
+                string director = directorTextBox.Text.Trim();
+
+                // Crear una nueva instancia de la clase Pelicula
+                Pelicula nuevaPelicula = new Pelicula
                 {
-                    MessageBox.Show("Por favor, complete todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Nombre = nombre,
+                    Actores = actores,
+                    Descripcion = descripcion,
+                    Duracion = duracion,
+                    Genero = genero,
+                    Edad = edad,
+                    Director = director
+                };
+
+                // Asegurarse de que no se agregue una película duplicada
+                if (peliculaManager.Exists(nuevaPelicula))
+                {
+                    MessageBox.Show("La película ya existe en la lista.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
+                // Agregar la nueva película a la lista
+                peliculaManager.Add(nuevaPelicula);
+                IComparer<Pelicula> comparador = Comparer<Pelicula>.Create((p1, p2) => string.Compare(p1.Nombre, p2.Nombre));
+                // Ordenar la lista utilizando el algoritmo de inserción
+                InsertionSortAlgorithm<Pelicula> insertionSort = new InsertionSortAlgorithm<Pelicula>();
+                insertionSort.InsertionSort(peliculas, new PeliculaComparer());
+                //QuickSortAlgorithm qs = new QuickSortAlgorithm();
+                //qs.Sort(peliculas, new PeliculaComparer());
+                
+                //qs.Sort(peliculas, comparador);
 
-                Pelicula pelicula = new Pelicula();
-                pelicula.Nombre = nombreTextBox.Text;
-                pelicula.Actores = actoresTextBox.Text;
-                pelicula.Descripcion = descripcionTextBox.Text;
-                pelicula.Duracion = Convert.ToInt32(duracionTextBox.Text);
-                pelicula.Genero = generoTextBox.Text;
-                pelicula.Edad = Convert.ToInt32(edadTextBox.Text);
-                pelicula.Director = directorTextBox.Text;
-
-                if (peliculaManager.Add(pelicula))
+                // Actualizar la visualización de la lista de películas
+                dataGridView1.Rows.Clear();
+                foreach (var pelicula in peliculas)
                 {
-                    MessageBox.Show("Pelicula guardada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    loadData();
-                    resetTextBox();
+                    dataGridView1.Rows.Add(pelicula.Nombre, pelicula.Actores, pelicula.Descripcion, pelicula.Duracion, pelicula.Genero, pelicula.Edad, pelicula.Director);
+                }
 
-                }
-                else
-                {
-                    MessageBox.Show("Pelicula no guardada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                // Limpiar los TextBox
+                resetTextBox();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al añadir la película: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
 
@@ -235,6 +244,13 @@ namespace Cine
             directorTextBox.Text = string.Empty;
         }
 
+        private class PeliculaComparer : IComparer<Pelicula>
+        {
+            public int Compare(Pelicula x, Pelicula y)
+            {
+                return string.Compare(x.Nombre, y.Nombre, StringComparison.OrdinalIgnoreCase);
+            }
+        }
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             try
@@ -248,37 +264,43 @@ namespace Cine
                 string nombre = busquedaTextBox.Text.Trim();
                 List<Pelicula> peliculas = peliculaManager.GetAll();
 
-                // Realizar la búsqueda de la película por nombre
-                Pelicula peliculaEncontrada = peliculas.FirstOrDefault(p => p.Nombre.Equals(nombre, StringComparison.OrdinalIgnoreCase));
+                // Crear una instancia de la clase BinarySearchAlgorithm
+                BinarySearchAlgorithm<Pelicula> bs = new BinarySearchAlgorithm<Pelicula>();
 
-                if (peliculaEncontrada != null)
+                // Crear una instancia de la clase PeliculaComparer para comparar por nombre
+                PeliculaComparer nombreComparer = new PeliculaComparer();
+
+                // Crear una instancia de la clase QuickSort
+                QuickSortAlgorithm qs = new QuickSortAlgorithm();
+
+                // Ordenar la lista de películas por nombre utilizando el método Sort de QuickSort
+                qs.Sort(peliculas, nombreComparer);
+
+                // Realizar la búsqueda binaria por nombre
+                Pelicula peliculaBuscada = new Pelicula { Nombre = nombre };
+                int index = bs.BinarySearch(peliculas.ToArray(), peliculaBuscada, nombreComparer);
+
+                if (index >= 0)
                 {
+                    // La película fue encontrada
+                    peliculaBuscada = peliculas[index];
+
                     // Mostrar la información de la película encontrada en los TextBox correspondientes
-                    nombreTextBox.Text = peliculaEncontrada.Nombre;
-                    actoresTextBox.Text = peliculaEncontrada.Actores;
-                    descripcionTextBox.Text = peliculaEncontrada.Descripcion;
-                    duracionTextBox.Text = peliculaEncontrada.Duracion.ToString();
-                    generoTextBox.Text = peliculaEncontrada.Genero;
-                    edadTextBox.Text = peliculaEncontrada.Edad.ToString();
-                    directorTextBox.Text = peliculaEncontrada.Director;
+                    nombreTextBox.Text = peliculaBuscada.Nombre;
+                    actoresTextBox.Text = peliculaBuscada.Actores;
+                    descripcionTextBox.Text = peliculaBuscada.Descripcion;
+                    duracionTextBox.Text = peliculaBuscada.Duracion.ToString();
+                    generoTextBox.Text = peliculaBuscada.Genero;
+                    edadTextBox.Text = peliculaBuscada.Edad.ToString();
+                    directorTextBox.Text = peliculaBuscada.Director;
 
                     MessageBox.Show("Película encontrada.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Seleccionar automáticamente la fila correspondiente en el DataGridView
                     dataGridView1.ClearSelection();
-                    int rowIndex = dataGridView1.Rows
-                        .Cast<DataGridViewRow>()
-                        .FirstOrDefault(row => row.Cells[0].Value.ToString().Equals(nombre, StringComparison.OrdinalIgnoreCase))?
-                        .Index ?? -1;
-
-                    if (rowIndex >= 0)
-                    {
-                        dataGridView1.Rows[rowIndex].Selected = true;
-                        dataGridView1.FirstDisplayedScrollingRowIndex = rowIndex;
-                    }
+                    dataGridView1.Rows[index].Selected = true;
+                    dataGridView1.FirstDisplayedScrollingRowIndex = index;
                 }
-
-
                 else
                 {
                     MessageBox.Show("No se encontró ninguna película con ese nombre.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -293,6 +315,10 @@ namespace Cine
                 busquedaTextBox.Focus();
             }
         }
+
+
+
+
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
@@ -312,20 +338,64 @@ namespace Cine
             Application.Exit();
         }
 
+        private void btnOrdenar_Click(object sender, EventArgs e)
+        {
+            var opcion = cmbOrdenar.SelectedIndex;
+            List<Pelicula> peliculas = peliculaManager.GetAll().ToList();
 
-/*
-        private void busquedaTextBox_TextChanged(object sender, EventArgs e)
-        {
-            searchData(busquedaTextBox.Text);
+            //Obtener el comparador correspondiente a la opción seleccionada
+            IComparer<Pelicula> comparador ;
+            switch (opcion)
+            {
+                case 0: // Ordenar por nombre
+                    comparador = Comparer<Pelicula>.Create((p1, p2) => string.Compare(p1.Nombre, p2.Nombre));
+                    break;
+                case 1: // Ordenar por actores
+                    comparador = Comparer<Pelicula>.Create((p1, p2) => string.Compare(p1.Actores, p2.Actores));
+                    break;
+                case 2: // Ordenar por descripción
+                    comparador = Comparer<Pelicula>.Create((p1, p2) => string.Compare(p1.Descripcion, p2.Descripcion));
+                    break;
+                case 3: // Ordenar por duración
+                    comparador = Comparer<Pelicula>.Create((p1, p2) => p1.Duracion.CompareTo(p2.Duracion));
+                    break;
+                case 4: // Ordenar por género
+                    comparador = Comparer<Pelicula>.Create((p1, p2) => string.Compare(p1.Genero, p2.Genero));
+                    break;
+                case 5: // Ordenar por edad
+                    comparador = Comparer<Pelicula>.Create((p1, p2) => p1.Edad.CompareTo(p2.Edad));
+                    break;
+                default:
+                    return; // Salir si no se selecciona una opción válida
+            }
+
+
+            //Llamar al método QuickSort para ordenar las películas
+            QuickSortAlgorithm qs = new QuickSortAlgorithm();
+            qs.Sort(peliculas, comparador);
+
+            // Actualizar el DataGridView con los datos ordenados
+            dataGridView1.Rows.Clear();
+            foreach (var pelicula in peliculas)
+            {
+                dataGridView1.Rows.Add(pelicula.Nombre, pelicula.Actores, pelicula.Descripcion, pelicula.Duracion, pelicula.Genero, pelicula.Edad, pelicula.Director);
+            }
         }
-        public void searchData(string valueToFind)
-        {
-            string searchQuery = "SELECT * FROM Peliculas WHERE Nombre LIKE '%" + valueToFind + "%'";
-            SQLiteDataAdapter adapter = new SQLiteDataAdapter(searchQuery, peliculaManager.GetConnection());
-            DataTable table = new DataTable();
-            adapter.Fill(table);
-            dataGridView1.DataSource = table;
-        }
-*/
+
+
+        /*
+                private void busquedaTextBox_TextChanged(object sender, EventArgs e)
+                {
+                    searchData(busquedaTextBox.Text);
+                }
+                public void searchData(string valueToFind)
+                {
+                    string searchQuery = "SELECT * FROM Peliculas WHERE Nombre LIKE '%" + valueToFind + "%'";
+                    SQLiteDataAdapter adapter = new SQLiteDataAdapter(searchQuery, peliculaManager.GetConnection());
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+                    dataGridView1.DataSource = table;
+                }
+        */
     }
 }

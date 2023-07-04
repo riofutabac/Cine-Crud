@@ -53,7 +53,6 @@ namespace Cine
                             this.Hide();
                             CrudCine form2 = new CrudCine();
                             form2.ShowDialog();
-
                             
                         }
                         else
