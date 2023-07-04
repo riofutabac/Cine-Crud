@@ -311,5 +311,21 @@ namespace Cine
         {
             Application.Exit();
         }
+
+
+/*
+        private void busquedaTextBox_TextChanged(object sender, EventArgs e)
+        {
+            searchData(busquedaTextBox.Text);
+        }
+        public void searchData(string valueToFind)
+        {
+            string searchQuery = "SELECT * FROM Peliculas WHERE Nombre LIKE '%" + valueToFind + "%'";
+            SQLiteDataAdapter adapter = new SQLiteDataAdapter(searchQuery, peliculaManager.GetConnection());
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+            dataGridView1.DataSource = table;
+        }
+*/
     }
 }
