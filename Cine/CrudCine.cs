@@ -76,13 +76,11 @@ namespace Cine
                 // Agregar la nueva película a la lista
                 peliculaManager.Add(nuevaPelicula);
                 IComparer<Pelicula> comparador = Comparer<Pelicula>.Create((p1, p2) => string.Compare(p1.Nombre, p2.Nombre));
+
                 // Ordenar la lista utilizando el algoritmo de inserción
                 InsertionSortAlgorithm<Pelicula> insertionSort = new InsertionSortAlgorithm<Pelicula>();
                 insertionSort.InsertionSort(peliculas, new PeliculaComparer());
-                //QuickSortAlgorithm qs = new QuickSortAlgorithm();
-                //qs.Sort(peliculas, new PeliculaComparer());
                 
-                //qs.Sort(peliculas, comparador);
 
                 // Actualizar la visualización de la lista de películas
                 dataGridView1.Rows.Clear();
