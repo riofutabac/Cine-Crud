@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Cine
 {
@@ -28,6 +24,20 @@ namespace Cine
         public bool Delete(int id)
         {
             return _peliculaGateway.Delete(id);
+        }
+        public bool Exists(Pelicula pelicula)
+        {
+            List<Pelicula> peliculas = GetAll();
+
+            foreach (Pelicula p in peliculas)
+            {
+                if (p.Nombre.ToLower() == pelicula.Nombre.ToLower())
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
