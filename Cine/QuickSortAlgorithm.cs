@@ -24,7 +24,6 @@ namespace Cine
                 Sort(list, comparer, pivotIndex + 1, right);
             }
         }
-
         internal int Partition<T>(List<T> list, IComparer<T> comparer, int left, int right)
         {
             T pivot = list[right];
@@ -42,7 +41,6 @@ namespace Cine
             Swap(list, i + 1, right);
             return i + 1;
         }
-
         internal void Swap<T>(List<T> list, int i, int j)
         {
             T temp = list[i];

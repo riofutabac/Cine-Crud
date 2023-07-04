@@ -42,7 +42,7 @@ namespace Cine
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            List<Pelicula> peliculas = peliculaManager.GetAll();
+            
             try
             {
                 // Obtener los datos de la película desde los TextBox
@@ -75,12 +75,13 @@ namespace Cine
 
                 // Agregar la nueva película a la lista
                 peliculaManager.Add(nuevaPelicula);
+                List<Pelicula> peliculas = peliculaManager.GetAll();
                 IComparer<Pelicula> comparador = Comparer<Pelicula>.Create((p1, p2) => string.Compare(p1.Nombre, p2.Nombre));
 
                 // Ordenar la lista utilizando el algoritmo de inserción
                 InsertionSortAlgorithm<Pelicula> insertionSort = new InsertionSortAlgorithm<Pelicula>();
                 insertionSort.InsertionSort(peliculas, new PeliculaComparer());
-                
+
 
                 // Actualizar la visualización de la lista de películas
                 dataGridView1.Rows.Clear();
@@ -320,7 +321,9 @@ namespace Cine
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            busquedaTextBox.Text = string.Empty;
+            Form1 form1 = new Form1();
+            form1.ShowDialog();
+
         }
 
         private void busquedaTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -342,7 +345,7 @@ namespace Cine
             List<Pelicula> peliculas = peliculaManager.GetAll().ToList();
 
             //Obtener el comparador correspondiente a la opción seleccionada
-            IComparer<Pelicula> comparador ;
+            IComparer<Pelicula> comparador;
             switch (opcion)
             {
                 case 0: // Ordenar por nombre
@@ -379,21 +382,5 @@ namespace Cine
                 dataGridView1.Rows.Add(pelicula.Nombre, pelicula.Actores, pelicula.Descripcion, pelicula.Duracion, pelicula.Genero, pelicula.Edad, pelicula.Director);
             }
         }
-
-
-        /*
-                private void busquedaTextBox_TextChanged(object sender, EventArgs e)
-                {
-                    searchData(busquedaTextBox.Text);
-                }
-                public void searchData(string valueToFind)
-                {
-                    string searchQuery = "SELECT * FROM Peliculas WHERE Nombre LIKE '%" + valueToFind + "%'";
-                    SQLiteDataAdapter adapter = new SQLiteDataAdapter(searchQuery, peliculaManager.GetConnection());
-                    DataTable table = new DataTable();
-                    adapter.Fill(table);
-                    dataGridView1.DataSource = table;
-                }
-        */
     }
 }

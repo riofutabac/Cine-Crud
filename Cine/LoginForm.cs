@@ -53,7 +53,7 @@ namespace Cine
                             this.Hide();
                             CrudCine form2 = new CrudCine();
                             form2.ShowDialog();
-                            
+
                         }
                         else
                         {
@@ -96,13 +96,13 @@ namespace Cine
 
         private string ComputeSha256Hash(string rawData)
         {
-         
+
             using (SHA256 sha256Hash = SHA256.Create())
             {
-                 
+
                 byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
 
-                
+
                 StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < bytes.Length; i++)
                 {
