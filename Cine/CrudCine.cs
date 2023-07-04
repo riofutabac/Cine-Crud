@@ -42,7 +42,7 @@ namespace Cine
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 // Obtener los datos de la película desde los TextBox
@@ -316,12 +316,118 @@ namespace Cine
         }
 
 
+        private void btnBuscar2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(busquedaTextBox.Text.Trim()))
+                {
+                    MessageBox.Show("Ingrese un nombre para realizar la búsqueda.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                string parametro = comboBox1.SelectedItem.ToString();
+                string valorBusqueda = busquedaTextBox.Text.Trim();
+                List<Pelicula> peliculas = peliculaManager.GetAll();
+
+                switch (parametro)
+                {
+                    case "Nombre":
+                        // Realizar la búsqueda por nombre
+                        List<Pelicula> peliculasPorNombre = peliculas.Where(p => p.Nombre.ToLower() == valorBusqueda.ToLower()).ToList();
+                        MostrarResultadosBusqueda(peliculasPorNombre);
+                        break;
+                    case "Actores":
+                        // Realizar la búsqueda por actores
+                        List<Pelicula> peliculasPorActores = peliculas.Where(p => p.Actores.ToLower().Contains(valorBusqueda.ToLower())).ToList();
+                        MostrarResultadosBusqueda(peliculasPorActores);
+                        break;
+                    case "Descripción":
+                        // Realizar la búsqueda por descripción
+                        List<Pelicula> peliculasPorDescripcion = peliculas.Where(p => p.Descripcion.ToLower().Contains(valorBusqueda.ToLower())).ToList();
+                        MostrarResultadosBusqueda(peliculasPorDescripcion);
+                        break;
+                    case "Duración":
+                        // Realizar la búsqueda por duración
+                        int duracion;
+                        if (int.TryParse(valorBusqueda, out duracion))
+                        {
+                            List<Pelicula> peliculasPorDuracion = peliculas.Where(p => p.Duracion == duracion).ToList();
+                            MostrarResultadosBusqueda(peliculasPorDuracion);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ingrese un valor numérico para realizar la búsqueda por duración.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        break;
+                    case "Género":
+                        // Realizar la búsqueda por género
+                        List<Pelicula> peliculasPorGenero = peliculas.Where(p => p.Genero.ToLower() == valorBusqueda.ToLower()).ToList();
+                        MostrarResultadosBusqueda(peliculasPorGenero);
+                        break;
+                    case "Edad":
+                        // Realizar la búsqueda por edad
+                        int edad;
+                        if (int.TryParse(valorBusqueda, out edad))
+                        {
+                            List<Pelicula> peliculasPorEdad = peliculas.Where(p => p.Edad == edad).ToList();
+                            MostrarResultadosBusqueda(peliculasPorEdad);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ingrese un valor numérico para realizar la búsqueda por edad.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        break;
+                    default:
+                        MessageBox.Show("Seleccione un parámetro válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error en la búsqueda: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                busquedaTextBox.Focus();
+            }
+        }
+
+        private void MostrarResultadosBusqueda(List<Pelicula> peliculasEncontradas)
+        {
+            if (peliculasEncontradas.Count > 0)
+            {
+                // La(s) película(s) fue(ron) encontrada(s)
+                Pelicula peliculaBuscada = peliculasEncontradas.First();
+
+                // Mostrar la información de la primera película encontrada en los TextBox correspondientes
+                nombreTextBox.Text = peliculaBuscada.Nombre;
+                actoresTextBox.Text = peliculaBuscada.Actores;
+                descripcionTextBox.Text = peliculaBuscada.Descripcion;
+                duracionTextBox.Text = peliculaBuscada.Duracion.ToString();
+                generoTextBox.Text = peliculaBuscada.Genero;
+                edadTextBox.Text = peliculaBuscada.Edad.ToString();
+                directorTextBox.Text = peliculaBuscada.Director;
+
+                MessageBox.Show("Película encontrada.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Seleccionar automáticamente la fila correspondiente en el DataGridView
+                int index = peliculaManager.GetAll().IndexOf(peliculaBuscada);
+                dataGridView1.ClearSelection();
+                dataGridView1.Rows[index].Selected = true;
+                dataGridView1.FirstDisplayedScrollingRowIndex = index;
+            }
+            else
+            {
+                MessageBox.Show("No se encontró ninguna película con ese criterio de búsqueda.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
 
 
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
+            Informacion form1 = new Informacion();
             form1.ShowDialog();
 
         }

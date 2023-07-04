@@ -61,6 +61,7 @@
             Edad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             Director = new System.Windows.Forms.DataGridViewTextBoxColumn();
             groupBox2 = new System.Windows.Forms.GroupBox();
+            comboBox1 = new System.Windows.Forms.ComboBox();
             btnOrdenar = new System.Windows.Forms.Button();
             cmbOrdenar = new System.Windows.Forms.ComboBox();
             menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -293,7 +294,7 @@
             btnBuscar.TabIndex = 3;
             btnBuscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             btnBuscar.UseVisualStyleBackColor = false;
-            btnBuscar.Click += btnBuscar_Click;
+            btnBuscar.Click += btnBuscar2_Click;
             // 
             // busquedaTextBox
             // 
@@ -302,7 +303,7 @@
             busquedaTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             busquedaTextBox.MaxLength = 12;
             busquedaTextBox.Name = "busquedaTextBox";
-            busquedaTextBox.Size = new System.Drawing.Size(435, 24);
+            busquedaTextBox.Size = new System.Drawing.Size(224, 24);
             busquedaTextBox.TabIndex = 0;
             busquedaTextBox.KeyDown += busquedaTextBox_KeyDown;
             // 
@@ -393,6 +394,7 @@
             // groupBox2
             // 
             groupBox2.BackColor = System.Drawing.Color.FromArgb(204, 204, 204);
+            groupBox2.Controls.Add(comboBox1);
             groupBox2.Controls.Add(btnOrdenar);
             groupBox2.Controls.Add(cmbOrdenar);
             groupBox2.Controls.Add(btnLimpar);
@@ -407,6 +409,15 @@
             groupBox2.Size = new System.Drawing.Size(832, 561);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Nombre", "Actores", "Descripción", "Duración", "Género", "Edad" });
+            comboBox1.Location = new System.Drawing.Point(392, 34);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new System.Drawing.Size(151, 28);
+            comboBox1.TabIndex = 15;
             // 
             // btnOrdenar
             // 
@@ -514,5 +525,6 @@
         private System.Windows.Forms.Button btnOrdenar;
         private System.Windows.Forms.ComboBox cmbOrdenar;
         private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

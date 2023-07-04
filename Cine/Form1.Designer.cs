@@ -1,6 +1,6 @@
 ﻿namespace Cine
 {
-    partial class Form1
+    partial class Informacion
     {
         /// <summary>
         /// Required designer variable.
@@ -214,7 +214,7 @@
             finButton.UseVisualStyleBackColor = true;
             finButton.Click += finButton_Click;
             // 
-            // Form1
+            // Informacion
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -237,8 +237,8 @@
             Controls.Add(labelNombre);
             Controls.Add(atrasButton);
             Controls.Add(siguienteButton);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "Informacion";
+            Text = "Informacion";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
